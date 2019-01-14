@@ -8,7 +8,7 @@
     <title>Blazor components </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Blazor components ">
-    <meta name="generator" content="docfx 2.40.4.0">
+    <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -538,7 +538,8 @@ public class BlazorRocksBase : BlazorComponent
 &lt;/ListViewTemplate&gt;
 </code></pre><h2 id="cascading-values-and-parameters">Cascading values and parameters</h2>
 <p>In some scenarios, it&#39;s inconvenient to flow data from an ancestor component to a descendent component using <a href="#component-parameters">component parameters</a>, especially when there are several component layers. Cascading values and parameters solve this problem by providing a convenient way for an ancestor component to provide a value to all of its descendent components. Cascading values and parameters also provide an approach for components to coordinate.</p>
-<p>In the following example from the sample app, the <code>ThemeInfo</code> class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.</p>
+<h3 id="theme-example">Theme example</h3>
+<p>In the following <em>Theme</em> example from the sample app, the <code>ThemeInfo</code> class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.</p>
 <p><em>UIThemeClasses/ThemeInfo.cs</em>:</p>
 <pre><code class="lang-csharp">public class ThemeInfo
 {
@@ -574,9 +575,9 @@ public class BlazorRocksBase : BlazorComponent
 [CascadingParameter(Name = &quot;UserPermissions&quot;)] PermInfo Permissions { get; set; }
 </code></pre><p>Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.</p>
 <p>Cascading values are bound to cascading parameters by type.</p>
-<p>In the sample app, the <code>CascadingValuesParameters</code> component binds to the <code>ThemeInfo</code> cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.</p>
-<p><em>Pages/CascadingValuesParameters.cshtml</em>:</p>
-<pre><code class="lang-cshtml">@page &quot;/cascadingvaluesparameters&quot;
+<p>In the sample app, the <code>CascadingValuesParametersTheme</code> component binds to the <code>ThemeInfo</code> cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.</p>
+<p><em>Pages/CascadingValuesParametersTheme.cshtml</em>:</p>
+<pre><code class="lang-cshtml">@page &quot;/cascadingvaluesparameterstheme&quot;
 @layout CascadingValuesParametersLayout
 @using BlazorSample.UIThemeClasses
 
@@ -584,9 +585,17 @@ public class BlazorRocksBase : BlazorComponent
 
 &lt;p&gt;Current count: @currentCount&lt;/p&gt;
 
-&lt;p&gt;&lt;button class=&quot;btn&quot; onclick=&quot;@IncrementCount&quot;&gt;Increment Counter (Unthemed)&lt;/button&gt;&lt;/p&gt;
+&lt;p&gt;
+    &lt;button class=&quot;btn&quot; onclick=&quot;@IncrementCount&quot;&gt;
+        Increment Counter (Unthemed)
+    &lt;/button&gt;
+&lt;/p&gt;
 
-&lt;p&gt;&lt;button class=&quot;btn @ThemeInfo.ButtonClass&quot; onclick=&quot;@IncrementCount&quot;&gt;Increment Counter (Themed)&lt;/button&gt;&lt;/p&gt;
+&lt;p&gt;
+    &lt;button class=&quot;btn @ThemeInfo.ButtonClass&quot; onclick=&quot;@IncrementCount&quot;&gt;
+        Increment Counter (Themed)
+    &lt;/button&gt;
+&lt;/p&gt;
 
 @functions {
     int currentCount = 0;
@@ -598,48 +607,126 @@ public class BlazorRocksBase : BlazorComponent
         currentCount++;
     }
 }
-</code></pre><p>Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider a <code>TabSet</code> component that contains several <code>Tab</code> components:</p>
+</code></pre><h3 id="tabset-example">TabSet example</h3>
+<p>Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider the following <em>TabSet</em> example in the sample app.</p>
+<p>The sample app has an <code>ITab</code> interface that tabs implement:</p>
+<pre><code class="lang-cs">using Microsoft.AspNetCore.Blazor;
+
+namespace BlazorSample.UIInterfaces
+{
+    public interface ITab
+    {
+        RenderFragment ChildContent { get; }
+    }
+}
+</code></pre><p>The <code>CascadingValuesParametersTabSet</code> component uses the <code>TabSet</code> component, which contains several <code>Tab</code> components:</p>
 <pre><code class="lang-cshtml">&lt;TabSet&gt;
     &lt;Tab Title=&quot;First tab&quot;&gt;
-        &lt;h4&gt;First tab&lt;/h4&gt;
-        This is the first tab.
-    &lt;/Tab&gt;
-
-    @if (showSecondTab)
-    {
-        &lt;Tab Title=&quot;Second&quot;&gt;
-            &lt;h4&gt;Second tab&lt;/h4&gt;
-            You can toggle me.
-        &lt;/Tab&gt;
-    }
-
-    &lt;Tab Title=&quot;Third&quot;&gt;
-        &lt;h4&gt;Third tab&lt;/h4&gt;
+        &lt;h4&gt;Greetings from the first tab!&lt;/h4&gt;
 
         &lt;label&gt;
-            &lt;input type=&quot;checkbox&quot; bind=@showSecondTab /&gt;
-            Toggle second tab
+            &lt;input type=&quot;checkbox&quot; bind=@showThirdTab /&gt;
+            Toggle third tab
         &lt;/label&gt;
     &lt;/Tab&gt;
+    &lt;Tab Title=&quot;Second tab&quot;&gt;
+        &lt;h4&gt;The second tab says Hello World!&lt;/h4&gt;
+    &lt;/Tab&gt;
+
+    @if (showThirdTab)
+    {
+        &lt;Tab Title=&quot;Third tab&quot;&gt;
+            &lt;h4&gt;Welcome to the disappearing third tab!&lt;/h4&gt;
+            &lt;p&gt;Toggle this tab from the first tab.&lt;/p&gt;
+        &lt;/Tab&gt;
+    }
 &lt;/TabSet&gt;
 </code></pre><p>The child <code>Tab</code> components aren&#39;t explicitly passed as parameters to the <code>TabSet</code>. Instead, the child <code>Tab</code> components are part of the child content of the <code>TabSet</code>. However, the <code>TabSet</code> still needs to know about each <code>Tab</code> so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the <code>TabSet</code> component <em>can provide itself as a cascading value</em> that is then picked up by the descendent <code>Tab</code> components.</p>
-<p><em>TabSet.cshtml</em> (not included in the sample app):</p>
-<pre><code class="lang-cshtml">&lt;!-- Display the tab headers --&gt;
+<p><em>Components/TabSet.cshtml</em>:</p>
+<pre><code class="lang-cshtml">@using BlazorSample.UIInterfaces
+
+&lt;!-- Display the tab headers --&gt;
 &lt;CascadingValue Value=this&gt;
     &lt;ul class=&quot;nav nav-tabs&quot;&gt;
         @ChildContent
     &lt;/ul&gt;
 &lt;/CascadingValue&gt;
+
+&lt;!-- Display body for only the active tab --&gt;
+&lt;div class=&quot;nav-tabs-body p-4&quot;&gt;
+    @ActiveTab?.ChildContent
+&lt;/div&gt;
+
+@functions {
+    [Parameter] RenderFragment ChildContent { get; set; }
+
+    public ITab ActiveTab { get; private set; }
+
+    public void AddTab(ITab tab)
+    {
+        if (ActiveTab == null)
+        {
+            SetActivateTab(tab);
+        }
+    }
+
+    public void RemoveTab(ITab tab)
+    {
+        if (ActiveTab == tab)
+        {
+            SetActivateTab(null);
+        }
+    }
+
+    public void SetActivateTab(ITab tab)
+    {
+        if (ActiveTab != tab)
+        {
+            ActiveTab = tab;
+            StateHasChanged();
+        }
+    }
+}
 </code></pre><p>The descendent <code>Tab</code> components capture the containing <code>TabSet</code> as a cascading parameter, so the <code>Tab</code> components add themselves to the <code>TabSet</code> and coordinate on which <code>Tab</code> is active.</p>
-<p><em>Tab.cshtml</em> (not included in the sample app):</p>
-<pre><code class="lang-cshtml">[CascadingParameter] TabSet ContainerTabSet { get; set; }
-</code></pre><p>The <code>TabSet</code> sample code is available in an <a href="https://gist.github.com/SteveSandersonMS/f10a552e1761ff759b1631d81a4428c3">ITab.cs Gist on GitHub</a>.</p>
-<h2 id="razor-templates">Razor templates</h2>
+<p><em>Components/Tab.cshtml</em>:</p>
+<pre><code class="lang-cshtml">@using BlazorSample.UIInterfaces
+@implements IDisposable
+@implements ITab
+
+&lt;li&gt;
+    &lt;a onclick=@Activate class=&quot;nav-link @TitleCssClass&quot; role=&quot;button&quot;&gt;
+        @Title
+    &lt;/a&gt;
+&lt;/li&gt;
+
+@functions {
+    [CascadingParameter] TabSet ContainerTabSet { get; set; }
+    [Parameter] string Title { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; private set; }
+
+    string TitleCssClass =&gt; ContainerTabSet.ActiveTab == this ? &quot;active&quot; : null;
+
+    protected override void OnInit()
+    {
+        ContainerTabSet.AddTab(this);
+    }
+
+    public void Dispose()
+    {
+        ContainerTabSet.RemoveTab(this);
+    }
+
+    void Activate()
+    {
+        ContainerTabSet.SetActivateTab(this);
+    }
+}
+</code></pre><h2 id="razor-templates">Razor templates</h2>
 <p>Render fragments can be defined using Razor template syntax. Razor templates are a way to define a UI snippet and assume the following format:</p>
 <pre><code class="lang-cshtml">@&lt;tag&gt;...&lt;/tag&gt;
 </code></pre><p>The following example illustrates how to specify <code>RenderFragment</code> and <code>RenderFragment&lt;T&gt;</code> values.</p>
 <p><em>RazorTemplates.cshtml</em>:</p>
-<pre><code class="lang-cshtml">@{ 
+<pre><code class="lang-cshtml">@{
     RenderFragment template = @&lt;p&gt;The time is @DateTime.Now.&lt;/p&gt;;
     RenderFragment&lt;Pet&gt; petTemplate = (pet) =&gt; @&lt;p&gt;Your pet&#39;s name is @pet.Name.&lt;/p&gt;;
 }

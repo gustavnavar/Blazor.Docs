@@ -4,6 +4,9 @@ references:
 - uid: api
   name: Blazor API
   href: api/index.html
+- uid: client-side/blazor/component-libraries
+  name: Component libraries in Blazor
+  href: docs/components/component-libraries.html
 - uid: client-side/blazor/components/index
   name: Blazor components
   href: docs/components/index.html
@@ -19,12 +22,12 @@ references:
 - uid: client-side/blazor/host-and-deploy/configure-linker
   name: Configure the Linker
   href: docs/host-and-deploy/configure-linker.html
-- uid: client-side/blazor/host-and-deploy/hosting-models
-  name: Blazor hosting models
-  href: docs/host-and-deploy/hosting-models.html
 - uid: client-side/blazor/host-and-deploy/index
   name: Host and deploy Blazor
   href: docs/host-and-deploy/index.html
+- uid: client-side/blazor/hosting-models
+  name: Blazor hosting models
+  href: docs/hosting-models.html
 - uid: client-side/blazor/index
   name: Blazor preview documentation
   href: docs/index.html

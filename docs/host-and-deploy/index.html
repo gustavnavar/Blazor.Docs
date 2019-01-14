@@ -8,7 +8,7 @@
     <title>Host and deploy Blazor </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Host and deploy Blazor ">
-    <meta name="generator" content="docfx 2.40.4.0">
+    <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -103,15 +103,15 @@
 <pre><code class="lang-console">dotnet run --pathbase=/CoolBlazorApp
 </code></pre><p>The app responds locally at <code>http://localhost:port/CoolBlazorApp</code>.</p>
 <p>For more information, see the <a href="#path-base">path base host configuration value</a> section.</p>
-<div class="IMPORTANT"><h5>Important</h5><p>If a Blazor app uses the <a class="xref" href="hosting-models.html#client-side-hosting-model">client-side hosting model</a> (based on the <strong>Blazor</strong> project template) and is hosted as an IIS sub-application in an ASP.NET Core app, it&#39;s important to disable the inherited ASP.NET Core Module handler. Remove the handler in the Blazor app&#39;s published <em>web.config</em> file by adding a <code>&lt;handlers&gt;</code> section to the file:</p>
+<div class="IMPORTANT"><h5>Important</h5><p>If a Blazor app uses the <a class="xref" href="../hosting-models.html#client-side-hosting-model">client-side hosting model</a> (based on the <strong>Blazor</strong> project template) and is hosted as an IIS sub-application in an ASP.NET Core app, it&#39;s important to disable the inherited ASP.NET Core Module handler. Remove the handler in the Blazor app&#39;s published <em>web.config</em> file by adding a <code>&lt;handlers&gt;</code> section to the file:</p>
 <pre><code class="lang-xml">&lt;handlers&gt;
   &lt;remove name=&quot;aspNetCore&quot; /&gt;
 &lt;/handlers&gt;
 </code></pre><p>Removing the handler is performed in addition to configuring the app&#39;s base path as described in this section. Set the app base path in the Blazor app&#39;s <em>index.html</em> file to the IIS alias used when configuring the sub-app in IIS.</p>
 </div>
 <h2 id="host-configuration-values">Host configuration values</h2>
-<p>Blazor apps that use the <a class="xref" href="hosting-models.html#server-side-hosting-model">server-side hosting model</a> can accept <a href="https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host#host-configuration-values">Web Host configuration values</a>.</p>
-<p>Blazor apps that use the <a class="xref" href="hosting-models.html#client-side-hosting-model">client-side hosting model</a> can accept the following host configuration values as command-line arguments at runtime in the development environment.</p>
+<p>Blazor apps that use the <a class="xref" href="../hosting-models.html#server-side-hosting-model">server-side hosting model</a> can accept <a href="https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host#host-configuration-values">Web Host configuration values</a>.</p>
+<p>Blazor apps that use the <a class="xref" href="../hosting-models.html#client-side-hosting-model">client-side hosting model</a> can accept the following host configuration values as command-line arguments at runtime in the development environment.</p>
 <h3 id="content-root">Content Root</h3>
 <p>The <code>--contentroot</code> argument sets the absolute path to the directory that contains the app&#39;s content files.</p>
 <ul>
