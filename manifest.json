@@ -1461,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "community.html",
-          "hash": "y82AohWHv0c8iW6Sj84bJQ=="
+          "hash": "crjCAWMGVQeRlh4oV/TbWw=="
         }
       },
       "is_incremental": false,
@@ -1684,7 +1684,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/tutorials/build-your-first-blazor-app.html",
-          "hash": "BCthENWAuXEgzYRGFcfjgw=="
+          "hash": "JZ86PK4R1VKjpGb23RTrVw=="
         }
       },
       "is_incremental": false,
@@ -1767,17 +1767,17 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build"
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "TocDocumentProcessor": {
