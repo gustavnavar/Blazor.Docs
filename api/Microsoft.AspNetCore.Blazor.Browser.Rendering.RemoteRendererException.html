@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Parameter
+    <title>Class RemoteRendererException
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Parameter
+    <meta name="title" content="Class RemoteRendererException
    ">
     <meta name="generator" content="docfx 2.40.7.0">
     
@@ -68,104 +68,53 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter">
+            <article class="content wrap" id="_content" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException">
   
   
-  <h1 id="Microsoft_AspNetCore_Blazor_Components_Parameter" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter" class="text-break">Class Parameter
+  <h1 id="Microsoft_AspNetCore_Blazor_Browser_Rendering_RemoteRendererException" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException" class="text-break">Class RemoteRendererException
   </h1>
-  <div class="markdown level0 summary"><p>Represents a single parameter supplied to an <a class="xref" href="Microsoft.AspNetCore.Blazor.Components.IComponent.html">IComponent</a>
-by its parent in the render tree.</p>
+  <div class="markdown level0 summary"><p>Represents an exception related to remote rendering.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Parameter</span></div>
+    <div class="level1"><span class="xref">RemoteRendererException</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.AspNetCore.Blazor.Components.html">Microsoft.AspNetCore.Blazor.Components</a></h6>
-  <h6><strong>Assembly</strong>: Microsoft.AspNetCore.Blazor.dll</h6>
-  <h5 id="Microsoft_AspNetCore_Blazor_Components_Parameter_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.AspNetCore.Blazor.Browser.Rendering.html">Microsoft.AspNetCore.Blazor.Browser.Rendering</a></h6>
+  <h6><strong>Assembly</strong>: Microsoft.AspNetCore.Blazor.Server.dll</h6>
+  <h5 id="Microsoft_AspNetCore_Blazor_Browser_Rendering_RemoteRendererException_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class Parameter : ValueType</code></pre>
+    <pre><code class="lang-csharp hljs">public class RemoteRendererException : Exception</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="Microsoft_AspNetCore_Blazor_Components_Parameter_Cascading_" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Cascading*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Components_Parameter_Cascading" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Cascading">Cascading</h4>
-  <div class="markdown level1 summary"><p>Gets a value to indicate whether the parameter is cascading, meaning that it
-was supplied by a <a class="xref" href="Microsoft.AspNetCore.Blazor.Components.CascadingValue-1.html">CascadingValue&lt;T&gt;</a>.</p>
+  <a id="Microsoft_AspNetCore_Blazor_Browser_Rendering_RemoteRendererException__ctor_" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException.#ctor*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Browser_Rendering_RemoteRendererException__ctor_System_String_" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException.#ctor(System.String)">RemoteRendererException(String)</h4>
+  <div class="markdown level1 summary"><p>Constructs an instance of <a class="xref" href="Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException.html">RemoteRendererException</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Cascading { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RemoteRendererException(string message)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Microsoft_AspNetCore_Blazor_Components_Parameter_Name_" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Name*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Components_Parameter_Name" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Gets the name of the parameter.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Microsoft_AspNetCore_Blazor_Components_Parameter_Value_" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Value*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Components_Parameter_Value" data-uid="Microsoft.AspNetCore.Blazor.Components.Parameter.Value">Value</h4>
-  <div class="markdown level1 summary"><p>Gets the value being supplied for the parameter.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Value { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Object</span></td>
-        <td></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The exception message.</p>
+</td>
       </tr>
     </tbody>
   </table>

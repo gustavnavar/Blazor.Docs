@@ -124,15 +124,51 @@ dispatching events to them, and notifying when the user interface is being updat
   </h3>
   
   
-  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignComponentId_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AssignComponentId*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignComponentId_Microsoft_AspNetCore_Blazor_Components_IComponent_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AssignComponentId(Microsoft.AspNetCore.Blazor.Components.IComponent)">AssignComponentId(IComponent)</h4>
+  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AddToRenderQueue_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AddToRenderQueue*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AddToRenderQueue_System_Int32_Microsoft_AspNetCore_Blazor_RenderFragment_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AddToRenderQueue(System.Int32,Microsoft.AspNetCore.Blazor.RenderFragment)">AddToRenderQueue(Int32, RenderFragment)</h4>
+  <div class="markdown level1 summary"><p>Schedules a render for the specified <code data-dev-comment-type="paramref" class="paramref">componentId</code>. Its display
+will be populated using the specified <code data-dev-comment-type="paramref" class="paramref">renderFragment</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void AddToRenderQueue(int componentId, RenderFragment renderFragment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">componentId</span></td>
+        <td><p>The ID of the component to render.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.AspNetCore.Blazor.RenderFragment.html">RenderFragment</a></td>
+        <td><span class="parametername">renderFragment</span></td>
+        <td><p>A <a class="xref" href="Microsoft.AspNetCore.Blazor.RenderFragment.html">RenderFragment</a> that will supply the updated UI contents.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignRootComponentId_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AssignRootComponentId*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignRootComponentId_Microsoft_AspNetCore_Blazor_Components_IComponent_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.AssignRootComponentId(Microsoft.AspNetCore.Blazor.Components.IComponent)">AssignRootComponentId(IComponent)</h4>
   <div class="markdown level1 summary"><p>Associates the <a class="xref" href="Microsoft.AspNetCore.Blazor.Components.IComponent.html">IComponent</a> with the <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html">Renderer</a>, assigning
 an identifier that is unique within the scope of the <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html">Renderer</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int AssignComponentId(IComponent component)</code></pre>
+    <pre><code class="lang-csharp hljs">protected int AssignRootComponentId(IComponent component)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -256,14 +292,45 @@ an identifier that is unique within the scope of the <a class="xref" href="Micro
   </table>
   
   
-  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplay_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.UpdateDisplay*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplay_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.UpdateDisplay(Microsoft.AspNetCore.Blazor.Rendering.RenderBatch@)">UpdateDisplay(RenderBatch)</h4>
+  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_RenderRootComponent_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.RenderRootComponent*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_RenderRootComponent_System_Int32_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.RenderRootComponent(System.Int32)">RenderRootComponent(Int32)</h4>
+  <div class="markdown level1 summary"><p>Performs the first render for a root component. After this, the root component
+makes its own decisions about when to re-render, so there is no need to call
+this more than once.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RenderRootComponent(int componentId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">componentId</span></td>
+        <td><p>The ID returned by <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignRootComponentId_Microsoft_AspNetCore_Blazor_Components_IComponent_">AssignRootComponentId(IComponent)</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplayAsync_" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.UpdateDisplayAsync*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplayAsync_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__" data-uid="Microsoft.AspNetCore.Blazor.Rendering.Renderer.UpdateDisplayAsync(Microsoft.AspNetCore.Blazor.Rendering.RenderBatch@)">UpdateDisplayAsync(RenderBatch)</h4>
   <div class="markdown level1 summary"><p>Updates the visible UI.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void UpdateDisplay(in RenderBatch renderBatch)</code></pre>
+    <pre><code class="lang-csharp hljs">protected abstract Task UpdateDisplayAsync(in RenderBatch renderBatch)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -279,6 +346,22 @@ an identifier that is unique within the scope of the <a class="xref" href="Micro
         <td><a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.RenderBatch.html">RenderBatch</a></td>
         <td><span class="parametername">renderBatch</span></td>
         <td><p>The changes to the UI since the previous call.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A <span class="xref">System.Threading.Tasks.Task</span> to represent the UI update process.</p>
 </td>
       </tr>
     </tbody>

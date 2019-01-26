@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Browser.Rendering.BrowserRenderer.html",
-          "hash": "BQqqIoquZhVvNhm19I4cpw=="
+          "hash": "FnnDq0pUqS7m0unqL8+g4A=="
         }
       },
       "is_incremental": false,
@@ -101,11 +101,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.AspNetCore.Blazor.Browser.Rendering.RemoteRendererException.html",
+          "hash": "sb7cZUGoDoPff7S/n6Uu1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Microsoft.AspNetCore.Blazor.Browser.Rendering.yml",
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Browser.Rendering.html",
-          "hash": "bCgav2EUtdoSFIF4aEK8Sw=="
+          "hash": "tHxoSigFWxddKPl1qdTALg=="
         }
       },
       "is_incremental": false,
@@ -249,7 +261,31 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.BlazorComponent.html",
-          "hash": "BJwI+ZJFpRzTC/D4CeBzew=="
+          "hash": "qaGtTkRBhJt2taxMznCBZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.AspNetCore.Blazor.Components.CascadingParameterAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.CascadingParameterAttribute.html",
+          "hash": "SAylyCTz5m7pcKnFfGsMXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.AspNetCore.Blazor.Components.CascadingValue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.CascadingValue-1.html",
+          "hash": "ZrlWtXyS9fqqWu/EbFyYNw=="
         }
       },
       "is_incremental": false,
@@ -345,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.Parameter.html",
-          "hash": "MwgOavR2dJnfNBmj+wb2eQ=="
+          "hash": "0X7zZl8NBLq+bJmsmO0GTA=="
         }
       },
       "is_incremental": false,
@@ -393,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.ParameterEnumerator.html",
-          "hash": "j9Hl4p7zs7YC22X+g0yfaA=="
+          "hash": "CywQYiVTvmu46k9BvNTO1A=="
         }
       },
       "is_incremental": false,
@@ -441,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Components.html",
-          "hash": "3rpj9Utlc7T01eeoJkPbLg=="
+          "hash": "/6y0ANDCmEk2w7fMtXgy/w=="
         }
       },
       "is_incremental": false,
@@ -669,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.RenderTree.ArrayRange-1.html",
-          "hash": "aHdw41z2iNQvaA9CUJ49Bw=="
+          "hash": "oEmfyslJP+3ORSuSezVQLA=="
         }
       },
       "is_incremental": false,
@@ -729,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.RenderTree.RenderTreeFrame.html",
-          "hash": "odojjsaQH1Spe5UBIDfGRA=="
+          "hash": "aJSsFEyn8I14bycgltq4ZA=="
         }
       },
       "is_incremental": false,
@@ -777,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Rendering.Renderer.html",
-          "hash": "SGCEa87PnJEzuCkzvWfC+w=="
+          "hash": "fGhe7pIRPlWE0EITqte+uw=="
         }
       },
       "is_incremental": false,
@@ -861,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Server.BlazorHub.html",
-          "hash": "s8mNsC5brjUhfB0ySwkCqg=="
+          "hash": "zCFVL3FDnYwDm6TnTixlNg=="
         }
       },
       "is_incremental": false,
@@ -885,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Server.Circuits.RemoteUriHelper.html",
-          "hash": "JzoKU+lCCmrT3iIysIMDWw=="
+          "hash": "zHMEIFTLF6wfURoQrJqpUw=="
         }
       },
       "is_incremental": false,
@@ -897,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Microsoft.AspNetCore.Blazor.Server.Circuits.html",
-          "hash": "2YnwFVfzm0ECD8zX7U6j4Q=="
+          "hash": "S5Y5vlS2QN9DIAeX8gYj0A=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "sDcF4Rlyu/ig1u2X0Uhvvw=="
+          "hash": "enLs3dd2J6IU/01+2vIQGw=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "zmWILh1kfmgYax+X3xkaAA=="
+          "hash": "Di17rkPYzTiBxThaOIvhJw=="
         }
       },
       "is_incremental": false,
@@ -1586,45 +1622,36 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "docs/index.md",
       "output": {
         ".html": {
           "relative_path": "docs/index.html",
-          "hash": "4i9ghtjLBmWK4IDKIL+jfw=="
+          "hash": "pLOL7ofefveKE2i2de/DtA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "docs/introduction/faq.md",
       "output": {
         ".html": {
           "relative_path": "docs/introduction/faq.html",
-          "hash": "FnB+m1gx5q+cPZyj2cEE5g=="
+          "hash": "RQYyiMHpjwMN4W9WoJ2TZg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "docs/introduction/index.md",
       "output": {
         ".html": {
           "relative_path": "docs/introduction/index.html",
-          "hash": "gO3Ju1WtFAqwLvZFEE9xog=="
+          "hash": "ktD60YSQE26c5ND99Wimog=="
         }
       },
       "is_incremental": false,
@@ -1767,9 +1794,9 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
@@ -1780,9 +1807,9 @@
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "TocDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }

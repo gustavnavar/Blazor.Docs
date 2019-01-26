@@ -93,10 +93,16 @@ web browser, dispatching events to them, and refreshing the UI as required.</p>
       <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_InstantiateComponent_System_Type_">Renderer.InstantiateComponent(Type)</a>
     </div>
     <div>
-      <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignComponentId_Microsoft_AspNetCore_Blazor_Components_IComponent_">Renderer.AssignComponentId(IComponent)</a>
+      <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_AssignRootComponentId_Microsoft_AspNetCore_Blazor_Components_IComponent_">Renderer.AssignRootComponentId(IComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_RenderRootComponent_System_Int32_">Renderer.RenderRootComponent(Int32)</a>
     </div>
     <div>
       <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_DispatchEvent_System_Int32_System_Int32_Microsoft_AspNetCore_Blazor_UIEventArgs_">Renderer.DispatchEvent(Int32, Int32, UIEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_AddToRenderQueue_System_Int32_Microsoft_AspNetCore_Blazor_RenderFragment_">Renderer.AddToRenderQueue(Int32, RenderFragment)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.AspNetCore.Blazor.Browser.Rendering.html">Microsoft.AspNetCore.Blazor.Browser.Rendering</a></h6>
@@ -245,14 +251,14 @@ causing it to be displayed in the specified DOM element.</p>
   </div>
   
   
-  <a id="Microsoft_AspNetCore_Blazor_Browser_Rendering_BrowserRenderer_UpdateDisplay_" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.BrowserRenderer.UpdateDisplay*"></a>
-  <h4 id="Microsoft_AspNetCore_Blazor_Browser_Rendering_BrowserRenderer_UpdateDisplay_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.BrowserRenderer.UpdateDisplay(Microsoft.AspNetCore.Blazor.Rendering.RenderBatch@)">UpdateDisplay(RenderBatch)</h4>
+  <a id="Microsoft_AspNetCore_Blazor_Browser_Rendering_BrowserRenderer_UpdateDisplayAsync_" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.BrowserRenderer.UpdateDisplayAsync*"></a>
+  <h4 id="Microsoft_AspNetCore_Blazor_Browser_Rendering_BrowserRenderer_UpdateDisplayAsync_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__" data-uid="Microsoft.AspNetCore.Blazor.Browser.Rendering.BrowserRenderer.UpdateDisplayAsync(Microsoft.AspNetCore.Blazor.Rendering.RenderBatch@)">UpdateDisplayAsync(RenderBatch)</h4>
   <div class="markdown level1 summary"><p>Updates the visible UI.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void UpdateDisplay(in RenderBatch batch)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Task UpdateDisplayAsync(in RenderBatch batch)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -271,8 +277,24 @@ causing it to be displayed in the specified DOM element.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A <span class="xref">System.Threading.Tasks.Task</span> to represent the UI update process.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplay_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__">Renderer.UpdateDisplay(RenderBatch)</a></div>
+  <div><a class="xref" href="Microsoft.AspNetCore.Blazor.Rendering.Renderer.html#Microsoft_AspNetCore_Blazor_Rendering_Renderer_UpdateDisplayAsync_Microsoft_AspNetCore_Blazor_Rendering_RenderBatch__">Renderer.UpdateDisplayAsync(RenderBatch)</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IDisposable</span>
