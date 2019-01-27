@@ -1521,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/components/index.html",
-          "hash": "pweWKHCoUL/MT4B6ODUOhw=="
+          "hash": "Iebfhptr6trp6bCUHad3JA=="
         }
       },
       "is_incremental": false,
@@ -1794,11 +1794,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
