@@ -110,7 +110,7 @@
 </tr>
 <tr>
 <td><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.scoped">Scoped</a></td>
-<td>Client-side Blazor doesn&#39;t currently have the concept of DI scopes. <code>Scoped</code> behaves like <code>Singleton</code>. Therefore, prefer <code>Singleton</code> and avoid <code>Scoped</code> in client-side Blazor apps. However, server-side Blazor, also known as Razor Components, supports the <code>Scoped</code> lifetime. In a server-side Razor Component, a scoped service registration is scoped to the connection.</td>
+<td>Client-side Blazor doesn&#39;t currently have the concept of DI scopes. <code>Scoped</code> behaves like <code>Singleton</code>. However, server-side Blazor, also known as Razor Components, supports the <code>Scoped</code> lifetime. In a server-side Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user (even if the current intent is to run client-side in the browser).</td>
 </tr>
 </tbody>
 </table>
