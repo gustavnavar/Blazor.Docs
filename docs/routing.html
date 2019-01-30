@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Blazor routing </title>
+    <title>Razor Components routing </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Blazor routing ">
+    <meta name="title" content="Razor Components routing ">
     <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -66,13 +66,14 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="client-side/blazor/routing">
-<h1 id="blazor-routing">Blazor routing</h1>
+            <article class="content wrap" id="_content" data-uid="razor-components/routing">
+<h1 id="razor-components-routing">Razor Components routing</h1>
 
 <p>By <a href="https://github.com/guardrex">Luke Latham</a></p>
-<div class="NOTE"><h5>Note</h5><p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
+<div class="NOTE"><h5>Note</h5><p>ASP.NET Core Razor Components is supported in ASP.NET Core 3.0 or later.</p>
+<p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
 </div>
-<p>Learn how to route requests in a client-side Blazor app and about the NavLink component.</p>
+<p>Learn how to route requests in apps and about the NavLink component.</p>
 <p><a href="https://github.com/aspnet/Blazor.Docs/tree/master/docs/common/samples/">View or download sample code</a> (<a class="xref" href="index.html#view-and-download-samples">how to download</a>). See the <a class="xref" href="get-started.html">Get started</a> topic for prerequisites.</p>
 <h2 id="route-templates">Route templates</h2>
 <p>The <code>&lt;Router&gt;</code> component enables routing, and a route template is provided to each accessible component. The <code>&lt;Router&gt;</code> component appears in the <em>App.cshtml</em> file:</p>
@@ -87,7 +88,7 @@
 </code></pre><div class="IMPORTANT"><h5>Important</h5><p>To generate routes properly, the app must include a <code>&lt;base&gt;</code> tag in its <em>wwwroot/index.html</em> file with the app base path specified in the <code>href</code> attribute (<code>&lt;base href=&quot;/&quot; /&gt;</code>). For more information, see <a class="xref" href="host-and-deploy/index.html#app-base-path">Host and deploy: App base path</a>.</p>
 </div>
 <h2 id="route-parameters">Route parameters</h2>
-<p>The Blazor client-side router uses route parameters to populate the corresponding component parameters with the same name (case insensitive).</p>
+<p>The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive).</p>
 <p><em>Pages/RouteParameter.cshtml</em>:</p>
 <pre><code class="lang-cshtml">@page &quot;/RouteParameter&quot;
 @page &quot;/RouteParameter/{text}&quot;
@@ -99,7 +100,7 @@
     private string Text { get; set; } = &quot;fantastic&quot;;
 </code></pre><p>Optional parameters aren&#39;t supported yet, so two <code>@page</code> directives are applied in the example above. The first permits navigation to the component without a parameter. The second <code>@page</code> directive takes the <code>{text}</code> route parameter and assigns the value to the <code>Text</code> property.</p>
 <h2 id="route-constraints">Route constraints</h2>
-<p>A route constraint enforces type matching on a route segment to a Blazor component.</p>
+<p>A route constraint enforces type matching on a route segment to a component.</p>
 <p>In the following example, the route to the Users component only matches if:</p>
 <ul>
 <li>An <code>Id</code> route segment is present on the request URL.</li>
@@ -191,7 +192,7 @@
                 &lt;span class=&quot;glyphicon glyphicon-th-list&quot;&gt;&lt;/span&gt; Blazor Route
             &lt;/NavLink&gt;
         &lt;/li&gt;
-</code></pre><p>There are two <a href="/api/Microsoft.AspNetCore.Blazor.Routing.NavLinkMatch.html">NavLinkMatch</a> options:</p>
+</code></pre><p>There are two <code>NavLinkMatch</code> options:</p>
 <ul>
 <li><code>NavLinkMatch.All</code> &ndash; Specifies that the NavLink should be active when it matches the entire current URL.</li>
 <li><code>NavLinkMatch.Prefix</code> &ndash; Specifies that the NavLink should be active when it matches any prefix of the current URL.</li>

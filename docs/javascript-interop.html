@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Blazor JavaScript interop </title>
+    <title>Razor Components JavaScript interop </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Blazor JavaScript interop ">
+    <meta name="title" content="Razor Components JavaScript interop ">
     <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -66,17 +66,83 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="client-side/blazor/javascript-interop">
-<h1 id="blazor-javascript-interop">Blazor JavaScript interop</h1>
+            <article class="content wrap" id="_content" data-uid="razor-components/javascript-interop">
+<h1 id="razor-components-javascript-interop">Razor Components JavaScript interop</h1>
 
 <p>By <a href="https://github.com/javiercn">Javier Calvarro Nelson</a>, <a href="https://github.com/danroth27">Daniel Roth</a>, and <a href="https://github.com/guardrex">Luke Latham</a></p>
-<div class="NOTE"><h5>Note</h5><p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
+<div class="NOTE"><h5>Note</h5><p>ASP.NET Core Razor Components is supported in ASP.NET Core 3.0 or later.</p>
+<p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
 </div>
-<p>A Blazor app can invoke JavaScript functions from .NET and .NET methods from JavaScript code.</p>
+<p>A Razor Components app can invoke JavaScript functions from .NET and .NET methods from JavaScript code.</p>
 <h2 id="invoke-javascript-functions-from-net-methods">Invoke JavaScript functions from .NET methods</h2>
-<p>There are times when Blazor .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the Blazor app.</p>
-<p>To call into JavaScript from .NET, use the <code>IJSRuntime</code> abstraction, which is accessible from <code>JSRuntime.Current</code>. The <code>InvokeAsync&lt;T&gt;</code> method on <code>IJSRuntime</code> takes an identifier for the JavaScript function you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (<code>window</code>). If you wish to call <code>window.someScope.someFunction</code>, the identifier is <code>someScope.someFunction</code>. There&#39;s no need to register the function before it&#39;s called. The return type <code>T</code> must also be JSON serializable.</p>
-<p>In the sample app, two JavaScript functions are available to the client-side app that interact with the DOM to receive user input and display a welcome message:</p>
+<p>There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app.</p>
+<p>To call into JavaScript from .NET, use the <code>IJSRuntime</code> abstraction. The <code>InvokeAsync&lt;T&gt;</code> method on <code>IJSRuntime</code> takes an identifier for the JavaScript function you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (<code>window</code>). If you wish to call <code>window.someScope.someFunction</code>, the identifier is <code>someScope.someFunction</code>. There&#39;s no need to register the function before it&#39;s called. The return type <code>T</code> must also be JSON serializable.</p>
+<p>For server-side ASP.NET Core Razor Components apps:</p>
+<ul>
+<li>Multiple user requests are processed by the server-side app. Don&#39;t call <code>JSRuntime.Current</code> in a component to invoke JavaScript functions.</li>
+<li>Inject the <code>IJSRuntime</code> abstraction and use the injected object to issue JavaScript interop calls.</li>
+</ul>
+<p>The following example is based on <a href="https://developer.mozilla.org/docs/Web/API/TextDecoder">TextDecoder</a>, an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.</p>
+<p>Inside the <code>&lt;head&gt;</code> element of <em>wwwroot/index.html</em>, provide a function that uses <code>TextDecoder</code> to decode a passed array:</p>
+<pre><code class="lang-html">&lt;script&gt;
+  window.ConvertArray = (win1251Array) =&gt; {
+    var win1251decoder = new TextDecoder(&#39;windows-1251&#39;);
+    var bytes = new Uint8Array(win1251Array);
+    var decodedArray = win1251decoder.decode(bytes);
+    console.log(decodedArray);
+    return decodedArray;
+  };
+&lt;/script&gt;
+</code></pre><p>JavaScript code, such as the code shown in the preceding example, can also be loaded by a JavaScript file with a reference to the script file in the <em>wwwroot/index.html</em> file.</p>
+<p>The following component:</p>
+<ul>
+<li>Invokes the <code>ConvertArray</code> JavaScript function using <code>JsRuntime</code> when a component button (<strong>Convert Array</strong>) is selected.</li>
+<li>After the JavaScript function is called, the passed array is converted into a string. The string is returned to the component for display.</li>
+</ul>
+<pre><code class="lang-cshtml">@page &quot;/&quot;
+@using Microsoft.JSInterop;
+@inject IJSRuntime JsRuntime;
+
+&lt;h1&gt;Call JavaScript Function Example&lt;/h1&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; onclick=&quot;@ConvertArray&quot;&gt;
+    Convert Array
+&lt;/button&gt;
+
+&lt;p class=&quot;mt-2&quot; style=&quot;font-size:1.6em&quot;&gt;
+    &lt;span class=&quot;badge badge-success&quot;&gt;
+        @ConvertedText
+    &lt;/span&gt;
+&lt;/p&gt;
+
+@functions {
+    // Quote (c)2005 Universal Pictures: Serenity
+    // https://www.uphe.com/movies/serenity
+    // David Krumholtz on IMDB: https://www.imdb.com/name/nm0472710/
+
+    private MarkupString ConvertedText =
+        new MarkupString(&quot;Select the &lt;b&gt;Convert Array&lt;/b&gt; button.&quot;);
+
+    private uint[] QuoteArray = new uint[]
+        {
+            60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
+            116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
+            108, 46, 60, 47, 101, 109, 62, 32, 45, 32, 77, 114, 46, 32, 85, 110,
+            105, 118, 101, 114, 115, 101, 10, 10,
+        };
+
+    async void ConvertArray()
+    {
+        var text =
+            await JsRuntime.InvokeAsync&lt;string&gt;(&quot;ConvertArray&quot;, QuoteArray);
+
+        ConvertedText = new MarkupString(text);
+
+        StateHasChanged();
+    }
+}
+</code></pre><p>For client-side Blazor apps, the <code>IJSRuntime</code> abstraction is accessible from <code>JSRuntime.Current</code>, which refers to the current user&#39;s request. Because there&#39;s only a single user of a client-side Blazor app, using <code>JSRuntime.Current</code> to invoke a JavaScript function works normally. Only use <code>JSRuntime.Current</code> in client-side Blazor apps.</p>
+<p>In the client-side sample app that accompanies this topic, two JavaScript functions are available to the client-side app that interact with the DOM to receive user input and display a welcome message:</p>
 <ul>
 <li><code>showPrompt</code> &ndash; Produces a prompt to accept user input (the user&#39;s name) and returns the name to the caller.</li>
 <li><code>displayWelcome</code> &ndash; Assigns a welcome message from the caller to a DOM object with an <code>id</code> of <code>welcome</code>.</li>
@@ -150,7 +216,7 @@
             new DotNetObjectRef(new HelloHelper(name)));
     }
 }
-</code></pre><p>The <code>IJSRuntime</code> abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to <code>IJSInProcessRuntime</code> and call <code>Invoke&lt;T&gt;</code> instead. We recommend that most JavaScript interop libraries use the async APIs to ensure the libraries are available in all Blazor scenarios, client-side or server-side.</p>
+</code></pre><p>The <code>IJSRuntime</code> abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to <code>IJSInProcessRuntime</code> and call <code>Invoke&lt;T&gt;</code> instead. We recommend that most JavaScript interop libraries use the async APIs to ensure the libraries are available in all scenarios, client-side or server-side.</p>
 <p>The sample app includes a component to demonstrate JS interop. The component:</p>
 <ul>
 <li>Receives user input via a JS prompt.</li>
@@ -195,7 +261,7 @@
 @functions {
     ElementRef username;
 }
-</code></pre><div class="NOTE"><h5>Note</h5><p>Do <strong>not</strong> use captured element references as a way of populating the DOM. Doing so may interfere with Blazor&#39;s declarative rendering model.</p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>Do <strong>not</strong> use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.</p>
 </div>
 <p>As far as .NET code is concerned, an <code>ElementRef</code> is an opaque handle. The <em>only</em> thing you can do with it is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an <code>HTMLElement</code> instance, which it can use with normal DOM APIs.</p>
 <p>For example, the following code defines a .NET extension method that enables setting the focus on an element:</p>
@@ -357,10 +423,10 @@ namespace MyLib
 }
 </code></pre><p>Console output in the browser&#39;s web developer tools:</p>
 <pre><code class="lang-console">Hello, Blazor!
-</code></pre><h2 id="share-interop-code-in-a-blazor-class-library">Share interop code in a Blazor class library</h2>
-<p>JavaScript interop code can be included in a Blazor class library (<code>dotnet new blazorlib</code>), which allows you to share the code in a NuGet package.</p>
-<p>The Blazor class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the <em>wwwroot</em> folder, and the tooling takes care of embedding the resources when the library is built.</p>
-<p>The built NuGet package is referenced in the project file of a Blazor app just as any normal NuGet package is referenced. After the app has been restored, app code can call into JavaScript as if it were C#.</p>
+</code></pre><h2 id="share-interop-code-in-a-razor-component-class-library">Share interop code in a Razor Component class library</h2>
+<p>JavaScript interop code can be included in a Razor Component class library (<code>dotnet new blazorlib</code>), which allows you to share the code in a NuGet package.</p>
+<p>The Razor Component class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the <em>wwwroot</em> folder, and the tooling takes care of embedding the resources when the library is built.</p>
+<p>The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app has been restored, app code can call into JavaScript as if it were C#.</p>
 </article>
           </div>
           

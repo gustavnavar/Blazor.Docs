@@ -4,51 +4,6 @@ references:
 - uid: api
   name: Blazor API
   href: api/index.html
-- uid: client-side/blazor/component-libraries
-  name: Component libraries in Blazor
-  href: docs/components/component-libraries.html
-- uid: client-side/blazor/components/index
-  name: Blazor components
-  href: docs/components/index.html
-- uid: client-side/blazor/debugging
-  name: Blazor debugging
-  href: docs/debugging.html
-- uid: client-side/blazor/dependency-injection
-  name: Dependency injection in Blazor
-  href: docs/dependency-injection.html
-- uid: client-side/blazor/get-started
-  name: Get started with Blazor
-  href: docs/get-started.html
-- uid: client-side/blazor/host-and-deploy/configure-linker
-  name: Configure the Linker
-  href: docs/host-and-deploy/configure-linker.html
-- uid: client-side/blazor/host-and-deploy/index
-  name: Host and deploy Blazor
-  href: docs/host-and-deploy/index.html
-- uid: client-side/blazor/hosting-models
-  name: Blazor hosting models
-  href: docs/hosting-models.html
-- uid: client-side/blazor/index
-  name: Blazor preview documentation
-  href: docs/index.html
-- uid: client-side/blazor/introduction/faq
-  name: Frequently asked questions (FAQ) about Blazor
-  href: docs/introduction/faq.html
-- uid: client-side/blazor/introduction/index
-  name: Introduction to Blazor
-  href: docs/introduction/index.html
-- uid: client-side/blazor/javascript-interop
-  name: Blazor JavaScript interop
-  href: docs/javascript-interop.html
-- uid: client-side/blazor/layouts
-  name: Blazor layouts
-  href: docs/layouts.html
-- uid: client-side/blazor/routing
-  name: Blazor routing
-  href: docs/routing.html
-- uid: client-side/blazor/tutorials/first-app
-  name: Build your first Blazor app
-  href: docs/tutorials/build-your-first-blazor-app.html
 - uid: Microsoft.AspNetCore.Blazor
   name: Microsoft.AspNetCore.Blazor
   href: api/Microsoft.AspNetCore.Blazor.html
@@ -5608,3 +5563,48 @@ references:
   fullName.vb: Mono.WebAssembly.Interop.MonoWebAssemblyJSRuntime.InvokeUnmarshalled(Of T0, T1, T2, TRes)(System.String, T0, T1, T2)
   nameWithType: MonoWebAssemblyJSRuntime.InvokeUnmarshalled<T0, T1, T2, TRes>(String, T0, T1, T2)
   nameWithType.vb: MonoWebAssemblyJSRuntime.InvokeUnmarshalled(Of T0, T1, T2, TRes)(String, T0, T1, T2)
+- uid: razor-components/component-libraries
+  name: Razor Components libraries
+  href: docs/component-libraries.html
+- uid: razor-components/components/index
+  name: Razor Components
+  href: docs/components/index.html
+- uid: razor-components/debugging
+  name: Razor Components debugging
+  href: docs/debugging.html
+- uid: razor-components/dependency-injection
+  name: Razor Components dependency injection
+  href: docs/dependency-injection.html
+- uid: razor-components/get-started
+  name: Get started with Blazor and Razor Components
+  href: docs/get-started.html
+- uid: razor-components/host-and-deploy/configure-linker
+  name: Configure the Linker for Blazor
+  href: docs/host-and-deploy/configure-linker.html
+- uid: razor-components/host-and-deploy/index
+  name: Host and deploy Blazor and Razor Components
+  href: docs/host-and-deploy/index.html
+- uid: razor-components/hosting-models
+  name: Razor Components hosting models
+  href: docs/hosting-models.html
+- uid: razor-components/index
+  name: Blazor preview documentation
+  href: docs/index.html
+- uid: razor-components/introduction/faq
+  name: Frequently asked questions (FAQ) about Blazor and Razor Components
+  href: docs/introduction/faq.html
+- uid: razor-components/introduction/index
+  name: Introduction to Razor Components
+  href: docs/introduction/index.html
+- uid: razor-components/javascript-interop
+  name: Razor Components JavaScript interop
+  href: docs/javascript-interop.html
+- uid: razor-components/layouts
+  name: Razor Components layouts
+  href: docs/layouts.html
+- uid: razor-components/routing
+  name: Razor Components routing
+  href: docs/routing.html
+- uid: razor-components/tutorials/first-app
+  name: Build your first Blazor app
+  href: docs/tutorials/build-your-first-blazor-app.html

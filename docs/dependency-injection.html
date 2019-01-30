@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Dependency injection in Blazor </title>
+    <title>Razor Components dependency injection </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Dependency injection in Blazor ">
+    <meta name="title" content="Razor Components dependency injection ">
     <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -66,20 +66,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="client-side/blazor/dependency-injection">
-<h1 id="dependency-injection-in-blazor">Dependency injection in Blazor</h1>
+            <article class="content wrap" id="_content" data-uid="razor-components/dependency-injection">
+<h1 id="razor-components-dependency-injection">Razor Components dependency injection</h1>
 
 <p>By <a href="https://www.timecockpit.com">Rainer Stropek</a></p>
-<div class="NOTE"><h5>Note</h5><p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
+<div class="NOTE"><h5>Note</h5><p>ASP.NET Core Razor Components is supported in ASP.NET Core 3.0 or later.</p>
+<p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
 </div>
-<p>Blazor has <a href="https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection">dependency injection (DI)</a> built-in. Apps can use built-in services by having them injected into components. Apps can also define custom services and make them available via DI.</p>
-<h2 id="what-is-dependency-injection">What is dependency injection?</h2>
+<p><a href="https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection">Dependency injection (DI)</a> is built-in. Apps can use built-in services by having them injected into components. Apps can also define custom services and make them available via DI.</p>
+<h2 id="dependency-injection">Dependency injection</h2>
 <p>DI is a technique for accessing services configured in a central location. This can be useful to:</p>
 <ul>
 <li>Share a single instance of a service class across many components (known as a <em>singleton</em> service).</li>
 <li>Decouple components from particular concrete service classes and only reference abstractions. For example, an interface <code>IDataAccess</code> is implemented by a concrete class <code>DataAccess</code>. When a component uses DI to receive an <code>IDataAccess</code> implementation, the component isn&#39;t coupled to the concrete type. The implementation can be swapped, perhaps to a mock implementation in unit tests.</li>
 </ul>
-<p>Blazor&#39;s DI system is responsible for supplying instances of services to components. DI also resolves dependencies recursively so that services themselves can depend on further services. DI is configured during startup of the app. An example is shown later in this topic.</p>
+<p>The DI system is responsible for supplying instances of services to components. DI also resolves dependencies recursively so that services themselves can depend on further services. DI is configured during startup of the app. An example is shown later in this topic.</p>
 <h2 id="add-services-to-di">Add services to DI</h2>
 <p>After creating a new app, examine the <code>Startup.ConfigureServices</code> method:</p>
 <pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
@@ -110,13 +111,13 @@
 </tr>
 <tr>
 <td><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.scoped">Scoped</a></td>
-<td>Client-side Blazor doesn&#39;t currently have the concept of DI scopes. <code>Scoped</code> behaves like <code>Singleton</code>. However, server-side Blazor, also known as Razor Components, supports the <code>Scoped</code> lifetime. In a server-side Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user (even if the current intent is to run client-side in the browser).</td>
+<td>Client-side Blazor doesn&#39;t currently have the concept of DI scopes. <code>Scoped</code> behaves like <code>Singleton</code>. However, ASP.NET Core Razor Components support the <code>Scoped</code> lifetime. In a Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user (even if the current intent is to run client-side in the browser).</td>
 </tr>
 </tbody>
 </table>
-<p>Blazor&#39;s DI system is based on the DI system in ASP.NET Core. For more information, see <a href="https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection">Dependency injection in ASP.NET Core</a>.</p>
+<p>The DI system is based on the DI system in ASP.NET Core. For more information, see <a href="https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection">Dependency injection in ASP.NET Core</a>.</p>
 <h2 id="default-services">Default services</h2>
-<p>Blazor provides default services that are automatically added to the service collection of an app. The following table shows some of the useful default services provided.</p>
+<p>Default services are automatically added to the service collection of an app. The following table shows some of the useful default services provided.</p>
 <table>
 <thead>
 <tr>
@@ -130,12 +131,12 @@
 <td>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI (singleton). Note that this instance of <code>HttpClient</code> uses the browser for handling the HTTP traffic in the background. <a href="https://docs.microsoft.com/dotnet/api/system.net.http.httpclient.baseaddress">HttpClient.BaseAddress</a> is automatically set to the base URI prefix of the app. <code>HttpClient</code> is only provided to client-side Blazor apps.</td>
 </tr>
 <tr>
-<td><a href="/api/Microsoft.JSInterop.IJSRuntime.html">IJSRuntime</a></td>
-<td>Represents an instance of a JavaScript runtime to which calls may be dispatched. For more information, see <a class="xref" href="javascript-interop.html">Blazor JavaScript interop</a>.</td>
+<td><code>IJSRuntime</code></td>
+<td>Represents an instance of a JavaScript runtime to which calls may be dispatched. For more information, see <a class="xref" href="javascript-interop.html">Razor Components JavaScript interop</a>.</td>
 </tr>
 <tr>
-<td><a href="/api/Microsoft.AspNetCore.Blazor.Services.IUriHelper.html">IUriHelper</a></td>
-<td>Helpers for working with URIs and navigation state (singleton). <code>IUriHelper</code> is provided to both client-side and server-side Blazor apps.</td>
+<td><code>IUriHelper</code></td>
+<td>Helpers for working with URIs and navigation state (singleton). <code>IUriHelper</code> is provided to both client-side Blazor and ASP.NET Core Razor Components apps.</td>
 </tr>
 </tbody>
 </table>
@@ -173,10 +174,10 @@
         Customers = await DataRepository.GetAllCustomersAsync();
     }
 }
-</code></pre><p>Internally, the generated property (<code>DataRepository</code>) is decorated with the <a href="/api/Microsoft.AspNetCore.Blazor.Components.InjectAttribute.html">InjectAttribute</a> attribute. Typically, this attribute isn&#39;t used directly. If a base class is required for components and injected properties are also required for the base class, <code>InjectAttribute</code> can be manually added:</p>
+</code></pre><p>Internally, the generated property (<code>DataRepository</code>) is decorated with the <code>InjectAttribute</code> attribute. Typically, this attribute isn&#39;t used directly. If a base class is required for components and injected properties are also required for the base class, <code>InjectAttribute</code> can be manually added:</p>
 <pre><code class="lang-csharp">public class ComponentBase : BlazorComponent
 {
-    // Blazor&#39;s dependency injection works even if using the
+    // Dependency injection works even if using the
     // InjectAttribute in a component&#39;s base class.
     [Inject]
     protected IDataAccess DataRepository { get; set; }
@@ -189,12 +190,12 @@
 &lt;h1&gt;...&lt;/h1&gt;
 ...
 </code></pre><h2 id="dependency-injection-in-services">Dependency injection in services</h2>
-<p>Complex services might require additional services. In the prior example, <code>DataAccess</code> might require Blazor&#39;s default service <code>HttpClient</code>. <code>@inject</code> or the <code>InjectAttribute</code> can&#39;t be used in services. <em>Constructor injection</em> must be used instead. Required services are added by adding parameters to the service&#39;s constructor. When dependency injection creates the service, it recognizes the services it requires in the constructor and provides them accordingly.</p>
+<p>Complex services might require additional services. In the prior example, <code>DataAccess</code> might require the <code>HttpClient</code> default service. <code>@inject</code> or the <code>InjectAttribute</code> can&#39;t be used in services. <em>Constructor injection</em> must be used instead. Required services are added by adding parameters to the service&#39;s constructor. When dependency injection creates the service, it recognizes the services it requires in the constructor and provides them accordingly.</p>
 <p>The following code sample demonstrates the concept:</p>
 <pre><code class="lang-csharp">public class DataAccess : IDataAccess
 {
     // The constructor receives an HttpClient via dependency
-    // injection. HttpClient is a default service offered by Blazor.
+    // injection. HttpClient is a default service.
     public DataAccess(HttpClient client)
     {
         ...
