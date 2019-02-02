@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Host and deploy Blazor and Razor Components </title>
+    <title> </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Host and deploy Blazor and Razor Components ">
+    <meta name="title" content=" ">
     <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -66,205 +66,16 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="razor-components/host-and-deploy/index">
-<h1 id="host-and-deploy-blazor-and-razor-components">Host and deploy Blazor and Razor Components</h1>
+            <article class="content wrap" id="_content" data-uid="">
 
-<p>By <a href="https://github.com/guardrex">Luke Latham</a>, <a href="https://www.timecockpit.com">Rainer Stropek</a>, and <a href="https://github.com/danroth27">Daniel Roth</a></p>
-<div class="NOTE"><h5>Note</h5><p>ASP.NET Core Razor Components is supported in ASP.NET Core 3.0 or later.</p>
-<p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
-</div>
-<h2 id="publish-the-app">Publish the app</h2>
-<p>Apps are published for deployment in Release configuration with the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-publish">dotnet publish</a> command. An IDE may handle executing the <code>dotnet publish</code> command automatically using its built-in publishing features, so it might not be necessary to manually execute the command from a command prompt depending on the development tools in use.</p>
-<pre><code class="lang-console">dotnet publish -c Release
-</code></pre><p><code>dotnet publish</code> triggers a <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-restore">restore</a> of the project&#39;s dependencies and <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-build">builds</a> the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times. The deployment is created in the <em>/bin/Release/&lt;target-framework&gt;/publish</em> folder.</p>
-<p>The assets in the <em>publish</em> folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.</p>
-<h2 id="host-configuration-values">Host configuration values</h2>
-<p>Razor Components apps that use the <a class="xref" href="../hosting-models.html#server-side-hosting-model">server-side hosting model</a> can accept <a href="https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host#host-configuration-values">Web Host configuration values</a>.</p>
-<p>Blazor apps that use the <a class="xref" href="../hosting-models.html#client-side-hosting-model">client-side hosting model</a> can accept the following host configuration values as command-line arguments at runtime in the development environment.</p>
-<h3 id="content-root">Content Root</h3>
-<p>The <code>--contentroot</code> argument sets the absolute path to the directory that contains the app&#39;s content files.</p>
-<ul>
-<li><p>Pass the argument when running the app locally at a command prompt. From the app&#39;s directory, execute:</p>
-<pre><code class="lang-console">dotnet run --contentroot=/&lt;content-root&gt;
-</code></pre></li>
-<li><p>Add an entry to the app&#39;s <em>launchSettings.json</em> file in the <strong>IIS Express</strong> profile. This setting is picked up when running the app with the Visual Studio Debugger and when running the app from a command prompt with <code>dotnet run</code>.</p>
-<pre><code class="lang-json">&quot;commandLineArgs&quot;: &quot;--contentroot=/&lt;content-root&gt;&quot;
-</code></pre></li>
-<li><p>In Visual Studio, specify the argument in <strong>Properties</strong> &gt; <strong>Debug</strong> &gt; <strong>Application arguments</strong>. Setting the argument in the Visual Studio property page adds the argument to the <em>launchSettings.json</em> file.</p>
-<pre><code class="lang-console">--contentroot=/&lt;content-root&gt;
-</code></pre></li>
-</ul>
-<h3 id="path-base">Path base</h3>
-<p>The <code>--pathbase</code> argument sets the app base path for an app run locally with a non-root virtual path (the <code>&lt;base&gt;</code> tag <code>href</code> is set to a path other than <code>/</code> for staging and production). For more information, see the <a href="#app-base-path">App base path</a> section.</p>
-<div class="IMPORTANT"><h5>Important</h5><p>Unlike the path provided to <code>href</code> of the <code>&lt;base&gt;</code> tag, don&#39;t include a trailing slash (<code>/</code>) when passing the <code>--pathbase</code> argument value. If the app base path is provided in the <code>&lt;base&gt;</code> tag as <code>&lt;base href=&quot;/CoolApp/&quot; /&gt;</code> (includes a trailing slash), pass the command-line argument value as <code>--pathbase=/CoolApp</code> (no trailing slash).</p>
-</div>
-<ul>
-<li><p>Pass the argument when running the app locally at a command prompt. From the app&#39;s directory, execute:</p>
-<pre><code class="lang-console">dotnet run --pathbase=/&lt;virtual-path&gt;
-</code></pre></li>
-<li><p>Add an entry to the app&#39;s <em>launchSettings.json</em> file in the <strong>IIS Express</strong> profile. This setting is picked up when running the app with the Visual Studio Debugger and when running the app from a command prompt with <code>dotnet run</code>.</p>
-<pre><code class="lang-json">&quot;commandLineArgs&quot;: &quot;--pathbase=/&lt;virtual-path&gt;&quot;
-</code></pre></li>
-<li><p>In Visual Studio, specify the argument in <strong>Properties</strong> &gt; <strong>Debug</strong> &gt; <strong>Application arguments</strong>. Setting the argument in the Visual Studio property page adds the argument to the <em>launchSettings.json</em> file.</p>
-<pre><code class="lang-console">--pathbase=/&lt;virtual-path&gt;
-</code></pre></li>
-</ul>
-<h3 id="urls">URLs</h3>
-<p>The <code>--urls</code> argument indicates the IP addresses or host addresses with ports and protocols to listen on for requests.</p>
-<ul>
-<li><p>Pass the argument when running the app locally at a command prompt. From the app&#39;s directory, execute:</p>
-<pre><code class="lang-console">dotnet run --urls=http://127.0.0.1:0
-</code></pre></li>
-<li><p>Add an entry to the app&#39;s <em>launchSettings.json</em> file in the <strong>IIS Express</strong> profile. This setting is picked up when running the app with the Visual Studio Debugger and when running the app from a command prompt with <code>dotnet run</code>.</p>
-<pre><code class="lang-json">&quot;commandLineArgs&quot;: &quot;--urls=http://127.0.0.1:0&quot;
-</code></pre></li>
-<li><p>In Visual Studio, specify the argument in <strong>Properties</strong> &gt; <strong>Debug</strong> &gt; <strong>Application arguments</strong>. Setting the argument in the Visual Studio property page adds the argument to the <em>launchSettings.json</em> file.</p>
-<pre><code class="lang-console">--urls=http://127.0.0.1:0
-</code></pre></li>
-</ul>
-<h2 id="deploy-a-client-side-blazor-app">Deploy a client-side Blazor app</h2>
-<p>With the <a class="xref" href="../hosting-models.html#client-side-hosting-model">client-side hosting model</a>:</p>
-<ul>
-<li>The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.</li>
-<li>The app is executed directly on the browser UI thread. Either of the following strategies is supported:<ul>
-<li>The Blazor app is served by an ASP.NET Core app. Covered in the <a href="#client-side-blazor-hosted-deployment-with-aspnet-core">Client-side Blazor hosted deployment with ASP.NET Core</a> section.</li>
-<li>The Blazor app is placed on a static hosting web server or service, where .NET isn&#39;t used to serve the Blazor app. Covered in the <a href="#client-side-blazor-standalone-deployment">Client-side Blazor standalone deployment</a> section.</li>
-</ul>
-</li>
-</ul>
-<h3 id="configure-the-linker">Configure the Linker</h3>
-<p>Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. You can control assembly linking on build. For more information, see <a class="xref" href="configure-linker.html">Configure the Linker for Blazor</a>.</p>
-<h3 id="rewrite-urls-for-correct-routing">Rewrite URLs for correct routing</h3>
-<p>Routing requests for page components in a client-side app isn&#39;t as simple as routing requests to a server-side, hosted app. Consider a client-side app with two pages:</p>
-<ul>
-<li><strong><em>Main.cshtml</em></strong> &ndash; Loads at the root of the app and contains a link to the About page (<code>href=&quot;About&quot;</code>).</li>
-<li><strong><em>About.cshtml</em></strong> &ndash; About page.</li>
-</ul>
-<p>When the app&#39;s default document is requested using the browser&#39;s address bar (for example, <code>https://www.contoso.com/</code>):</p>
-<ol>
-<li>The browser makes a request.</li>
-<li>The default page is returned, which is usually <em>index.html</em>.</li>
-<li><em>index.html</em> bootstraps the app.</li>
-<li>Blazor&#39;s router loads and the Razor Main page (<em>Main.cshtml</em>) is displayed.</li>
-</ol>
-<p>On the Main page, selecting the link to the About page loads the About page. Selecting the link to the About page works on the client because the Blazor router stops the browser from making a request on the Internet to <code>www.contoso.com</code> for <code>About</code> and serves the About page itself. All of the requests for internal pages <em>within the client-side app</em> work the same way: Requests don&#39;t trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.</p>
-<p>If a request is made using the browser&#39;s address bar for <code>www.contoso.com/About</code>, the request fails. No such resource exists on the app&#39;s Internet host, so a <em>404 Not found</em> response is returned.</p>
-<p>Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the <em>index.html</em> page. When <em>index.html</em> is returned, the app&#39;s client-side router takes over and responds with the correct resource.</p>
-<h3 id="app-base-path">App base path</h3>
-<p>The app base path is the virtual app root path on the server. For example, an app that resides on the Contoso server in a virtual folder at <code>/CoolApp/</code> is reached at <code>https://www.contoso.com/CoolApp</code> and has a virtual base path of <code>/CoolApp/</code>. By setting the app base path to <code>CoolApp/</code>, the app is made aware of where it virtually resides on the server. The app can use the app base path to construct URLs relative to the app root from a component that isn&#39;t in the root directory. This allows components that exist at different levels of the directory structure to build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the <code>href</code> target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.</p>
-<p>In many hosting scenarios, the server&#39;s virtual path to the app is the root of the app. In these cases, the app base path is a forward slash (<code>&lt;base href=&quot;/&quot; /&gt;</code>), which is the default configuration for an app. In other hosting scenarios, such as GitHub Pages and IIS virtual directories or sub-applications, the app base path must be set to the server&#39;s virtual path to the app. To set the app&#39;s base path, add or update the <code>&lt;base&gt;</code> tag in <em>index.html</em> found within the <code>&lt;head&gt;</code> tag elements. Set the <code>href</code> attribute value to <code>&lt;virtual-path&gt;/</code> (the trailing slash is required), where <code>&lt;virtual-path&gt;/</code> is the full virtual app root path on the server for the app. In the preceding example, the virtual path is set to <code>CoolApp/</code>: <code>&lt;base href=&quot;CoolApp/&quot; /&gt;</code>.</p>
-<p>For an app with a non-root virtual path configured (for example, <code>&lt;base href=&quot;CoolApp/&quot; /&gt;</code>), the app fails to find its resources <em>when run locally</em>. To overcome this problem during local development and testing, you can supply a <em>path base</em> argument that matches the <code>href</code> value of the <code>&lt;base&gt;</code> tag at runtime.</p>
-<p>To pass the path base argument with the root path (<code>/</code>) when running the app locally, execute the following command from the app&#39;s directory:</p>
-<pre><code class="lang-console">dotnet run --pathbase=/CoolApp
-</code></pre><p>The app responds locally at <code>http://localhost:port/CoolApp</code>.</p>
-<p>For more information, see the <a href="#path-base">path base host configuration value</a> section.</p>
-<div class="IMPORTANT"><h5>Important</h5><p>If an app uses the <a class="xref" href="../hosting-models.html#client-side-hosting-model">client-side hosting model</a> (based on the <strong>Blazor</strong> project template) and is hosted as an IIS sub-application in an ASP.NET Core app, it&#39;s important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app&#39;s <code>&lt;handlers&gt;</code> section in the <em>web.config</em> file isn&#39;t inherited by the sub-app.</p>
-<p>Remove the handler in the app&#39;s published <em>web.config</em> file by adding a <code>&lt;handlers&gt;</code> section to the file:</p>
-<pre><code class="lang-xml">&lt;handlers&gt;
-  &lt;remove name=&quot;aspNetCore&quot; /&gt;
-&lt;/handlers&gt;
-</code></pre><p>Alternatively, disable inheritance of the root (parent) app&#39;s <code>&lt;system.webServer&gt;</code> section using a <code>&lt;location&gt;</code> element with <code>inheritInChildApplications</code> set to <code>false</code>:</p>
-<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;configuration&gt;
- &lt;location path=&quot;.&quot; inheritInChildApplications=&quot;false&quot;&gt;
-   &lt;system.webServer&gt;
-     &lt;handlers&gt;
-       &lt;add name=&quot;aspNetCore&quot; ... /&gt;
-     &lt;/handlers&gt;
-     &lt;aspNetCore ... /&gt;
-   &lt;/system.webServer&gt;
- &lt;/location&gt;
-&lt;/configuration&gt;
-</code></pre><p>Removing the handler or disabling inheritance is performed in addition to configuring the app&#39;s base path as described in this section. Set the app base path in the app&#39;s <em>index.html</em> file to the IIS alias used when configuring the sub-app in IIS.</p>
-</div>
-<h3 id="client-side-blazor-hosted-deployment-with-aspnet-core">Client-side Blazor hosted deployment with ASP.NET Core</h3>
-<p>A <em>hosted deployment</em> serves the client-side Blazor app to browsers from an <a href="https://docs.microsoft.com/aspnet/core/">ASP.NET Core app</a> that runs on a server.</p>
-<p>The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the <strong>Blazor (ASP.NET Core hosted)</strong> project template (<code>blazorhosted</code> template when using the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-new">dotnet new</a> command).</p>
-<p>For more information on ASP.NET Core app hosting and deployment, see <a href="https://docs.microsoft.com/aspnet/core/host-and-deploy">Host and deploy ASP.NET Core</a>.</p>
-<p>For information on deploying to Azure App Service, see the following topics:</p>
-<p><a href="https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-vs">Publish to Azure with Visual Studio</a><br>Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.</p>
-<p><a href="https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-cli">Publish to Azure with CLI tools</a><br>Learn how to publish an ASP.NET Core app to Azure App Service using the Git command-line client.</p>
-<h3 id="client-side-blazor-standalone-deployment">Client-side Blazor standalone deployment</h3>
-<p>A <em>standalone deployment</em> serves the client-side Blazor app as a set of static files that are requested directly by clients. A web server isn&#39;t used to serve the Blazor app.</p>
-<h4 id="client-side-blazor-standalone-hosting-with-iis">Client-side Blazor standalone hosting with IIS</h4>
-<p>IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see <a href="https://docs.microsoft.com/iis/manage/creating-websites/scenario-build-a-static-website-on-iis">Build a Static Website on IIS</a>.</p>
-<p>Published assets are created in the <em>\bin\Release\&lt;target-framework&gt;\publish</em> folder. Host the contents of the <em>publish</em> folder on the web server or hosting service.</p>
-<p><strong>web.config</strong></p>
-<p>When a Blazor project is published, a <em>web.config</em> file is created with the following IIS configuration:</p>
-<ul>
-<li>MIME types are set for the following file extensions:<ul>
-<li><em>*.dll</em>: <code>application/octet-stream</code></li>
-<li><em>*.json</em>: <code>application/json</code></li>
-<li><em>*.wasm</em>: <code>application/wasm</code></li>
-<li><em>*.woff</em>: <code>application/font-woff</code></li>
-<li><em>*.woff2</em>: <code>application/font-woff</code></li>
-</ul>
-</li>
-<li>HTTP compression is enabled for the following MIME types:<ul>
-<li><code>application/octet-stream</code></li>
-<li><code>application/wasm</code></li>
-</ul>
-</li>
-<li>URL Rewrite Module rules are established:<ul>
-<li>Serve the sub-directory where the app&#39;s static assets reside (<em>&lt;assembly_name&gt;\dist\&lt;path_requested&gt;</em>).</li>
-<li>Create SPA fallback routing so that requests for non-file assets are redirected to the app&#39;s default document in its static assets folder (<em>&lt;assembly_name&gt;\dist\index.html</em>).</li>
-</ul>
-</li>
-</ul>
-<p><strong>Install the URL Rewrite Module</strong></p>
-<p>The <a href="https://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite Module</a> is required to rewrite URLs. The module isn&#39;t installed by default, and it isn&#39;t available for install as an Web Server (IIS) role service feature. The module must be downloaded from the IIS website. Use the Web Platform Installer to install the module:</p>
-<ol>
-<li>Locally, navigate to the <a href="https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads">URL Rewrite Module downloads page</a>. For the English version, select <strong>WebPI</strong> to download the WebPI installer. For other languages, select the appropriate architecture for the server (x86/x64) to download the installer.</li>
-<li>Copy the installer to the server. Run the installer. Select the <strong>Install</strong> button and accept the license terms. A server restart isn&#39;t required after the install completes.</li>
-</ol>
-<p><strong>Configure the website</strong></p>
-<p>Set the website&#39;s <strong>Physical path</strong> to the app&#39;s folder. The folder contains:</p>
-<ul>
-<li>The <em>web.config</em> file that IIS uses to configure the website, including the required redirect rules and file content types.</li>
-<li>The app&#39;s static asset folder.</li>
-</ul>
-<p><strong>Troubleshooting</strong></p>
-<p>If a <em>500 Internal Server Error</em> is received and IIS Manager throws errors when attempting to access the website&#39;s configuration, confirm that the URL Rewrite Module is installed. When the module isn&#39;t installed, the <em>web.config</em> file can&#39;t be parsed by IIS. This prevents the IIS Manager from loading the website&#39;s configuration and the website from serving Blazor&#39;s static files.</p>
-<p>For more information on troubleshooting deployments to IIS, see <a href="https://docs.microsoft.com/aspnet/core/host-and-deploy/iis/troubleshoot">Troubleshoot ASP.NET Core on IIS</a>.</p>
-<h4 id="client-side-blazor-standalone-hosting-with-nginx">Client-side Blazor standalone hosting with Nginx</h4>
-<p>The following <em>nginx.conf</em> file is simplified to show how to configure Nginx to send the <em>Index.html</em> file whenever it can&#39;t find a corresponding file on disk.</p>
-<pre><code>events { }
-http {
-    server {
-        listen 80;
-
-        location / {
-            root /usr/share/nginx/html;
-            try_files $uri $uri/ /Index.html =404;
-        }
-    }
-}
-</code></pre><p>For more information on production Nginx web server configuration, see <a href="https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/">Creating NGINX Plus and NGINX Configuration Files</a>.</p>
-<h4 id="client-side-blazor-standalone-hosting-with-nginx-in-docker">Client-side Blazor standalone hosting with Nginx in Docker</h4>
-<p>To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-based Nginx image. Update the Dockerfile to copy the <em>nginx.config</em> file into the container.</p>
-<p>Add one line to the Dockerfile, as shown in the following example:</p>
-<pre><code>FROM nginx:alpine
-COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/nginx.conf
-</code></pre><h4 id="client-side-blazor-standalone-hosting-with-github-pages">Client-side Blazor standalone hosting with GitHub Pages</h4>
-<p>To handle URL rewrites, add a <em>404.html</em> file with a script that handles redirecting the request to the <em>index.html</em> page. For an example implementation provided by the community, see <a href="http://spa-github-pages.rafrex.com/">Single Page Apps for GitHub Pages</a> (<a href="https://github.com/rafrex/spa-github-pages#readme">rafrex/spa-github-pages on GitHub</a>). An example using the community approach can be seen at <a href="https://github.com/blazor-demo/blazor-demo.github.io">blazor-demo/blazor-demo.github.io on GitHub</a> (<a href="https://blazor-demo.github.io/">live site</a>).</p>
-<p>When using a project site instead of an organization site, add or update the <code>&lt;base&gt;</code> tag in <em>index.html</em>. Set the <code>href</code> attribute value to <code>&lt;repository-name&gt;/</code>, where <code>&lt;repository-name&gt;/</code> is the GitHub repository name.</p>
-<h2 id="deploy-a-server-side-razor-components-app">Deploy a server-side Razor Components app</h2>
-<p>With the <a class="xref" href="../hosting-models.html#server-side-hosting-model">server-side hosting model</a>, Razor Components is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a SignalR connection.</p>
-<p>The app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a server-side deployment, Visual Studio includes the <strong>Blazor (Server-side in ASP.NET Core)</strong> project template (<code>blazorserver</code> template when using the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-new">dotnet new</a> command).</p>
-<!--
-
-**INSERT: Concerns are the same as publishing an ASP.NET Core SignalR app**
-
-**INSERT: Content on the Azure SignalR Service**
-
-**INSERT: Manually turn on WebSockets support**
-
--->
-<p>When the ASP.NET Core app is published, the Razor Components app is included in the published output so that the ASP.NET Core app and the Razor Components app can be deployed together. For more information on ASP.NET Core app hosting and deployment, see <a href="https://docs.microsoft.com/aspnet/core/host-and-deploy">Host and deploy ASP.NET Core</a>.</p>
-<p>For information on deploying to Azure App Service, see the following topics:</p>
-<p><a href="https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-vs">Publish to Azure with Visual Studio</a><br>Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.</p>
-<p><a href="https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-cli">Publish to Azure with CLI tools</a><br>Learn how to publish an ASP.NET Core app to Azure App Service using the Git command-line client.</p>
+<p>&lt;!DOCTYPE html&gt;
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=https://docs.microsoft.com/aspnet/core/host-and-deploy/razor-components/">
+</head>
+<body>
+</body>
+</html></p>
 </article>
           </div>
           

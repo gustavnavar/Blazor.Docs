@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Razor Components libraries </title>
+    <title> </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Razor Components libraries ">
+    <meta name="title" content=" ">
     <meta name="generator" content="docfx 2.40.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -66,39 +66,16 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="razor-components/component-libraries">
-<h1 id="razor-components-libraries">Razor Components libraries</h1>
+            <article class="content wrap" id="_content" data-uid="">
 
-<p>By <a href="https://github.com/stimms">Simon Timms</a></p>
-<div class="NOTE"><h5>Note</h5><p>ASP.NET Core Razor Components is supported in ASP.NET Core 3.0 or later.</p>
-<p>Blazor is an unsupported experimental web framework that shouldn&#39;t be used for production workloads at this time.</p>
-</div>
-<p>Components can be shared in component libraries across projects. Components can be included from:</p>
-<ul>
-<li>Another project in the solution.</li>
-<li>A NuGet package.</li>
-<li>A referenced .NET library.</li>
-</ul>
-<p>Just as components are regular .NET types, component libraries are normal .NET assemblies.</p>
-<p>To create a new component library, use the <code>blazorlib</code> template with the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-new">dotnet new</a> command. The template is part of the templates installed when <a href="/docs/get-started.html#setup">setting up Razor Components</a>.</p>
-<pre><code class="lang-console">dotnet new blazorlib -o MyComponentLib1
-</code></pre><p>To add the library to an existing project, use the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-sln">dotnet sln</a> command:</p>
-<pre><code class="lang-console">dotnet sln add .\MyComponentLib1
-</code></pre><p>Component libraries may contain static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (<em>.dll</em>), which allows consumption of the components without having to worry about how to include their resources. Any files included in the <code>content</code> directory are marked as an embedded resource. </p>
-<h2 id="consume-a-library-component">Consume a library component</h2>
-<p>In order to consume components defined in a library in another project, the <a href="https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/intro#add-helper-label">@addTagHelper</a> directive must be used. Individual components may be added by name. For example, the following directive adds <code>Component1</code> of <code>MyComponentLib1</code>:</p>
-<pre><code class="lang-cshtml">@addTagHelper MyComponentLib1.Component1, MyComponentLib1
-</code></pre><p>The general format of the directive is:</p>
-<pre><code class="lang-cshtml">@addTagHelper &lt;namespaced component name&gt;, &lt;assembly name&gt;
-</code></pre><p>However, it&#39;s common to include all of the components from an assembly using a wildcard:</p>
-<pre><code class="lang-cshtml">@addTagHelper *, MyComponentLib1
-</code></pre><p>The <code>@addTagHelper</code> directive can be included in <em>_ViewImport.cshtml</em> to make the components available for an entire project or applied to a single page or set of pages within a folder. With the <code>@addTagHelper</code> directive in place, the components of the component library can be consumed as if they were in the same assembly as the app. </p>
-<h2 id="build-pack-and-ship-to-nuget">Build, pack, and ship to NuGet</h2>
-<p>Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-pack">dotnet pack</a> command:</p>
-<pre><code class="lang-console">dotnet pack
-</code></pre><p>Upload the package to NuGet using the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet-nuget-push">dotnet nuget publish</a> command:</p>
-<pre><code class="lang-console">dotnet nuget publish
-</code></pre><p>Any included static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren&#39;t required to manually install the resources.</p>
+<p>&lt;!DOCTYPE html&gt;
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=https://docs.microsoft.com/aspnet/core/razor-components/class-libraries">
+</head>
+<body>
+</body>
+</html></p>
 </article>
           </div>
           
