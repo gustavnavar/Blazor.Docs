@@ -1509,7 +1509,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/component-libraries.html",
-          "hash": "Sreupa7yo7UwQ50Lch84Ww=="
+          "hash": "Ejwu0CxRTGnbgwmf2X/lVw=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/components/index.html",
-          "hash": "x4mXMniXHND/kH5N7w+bvw=="
+          "hash": "Z7NNlOQ025/OcN29UN3RuA=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1533,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/debugging.html",
-          "hash": "tPNfFhMQcczS+YBNXUnAWw=="
+          "hash": "VIWZPpsgFhtn2/t71gkqTA=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1545,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/dependency-injection.html",
-          "hash": "HzfXf3ZXuTwNOOegp/Pghg=="
+          "hash": "FfRvuVuSAMlDm4t+EpAADw=="
         }
       },
       "is_incremental": false,
@@ -1557,7 +1557,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/get-started.html",
-          "hash": "kNr/mVXYJplqIgd9FCq5hw=="
+          "hash": "72QDPSZYcLhTD8Hx6R9x5A=="
         }
       },
       "is_incremental": false,
@@ -1569,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/host-and-deploy/configure-linker.html",
-          "hash": "dC6IFBlk55UGO4dlZxS+lQ=="
+          "hash": "wVs1ja4q6dO3FNvcPUIRtw=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/host-and-deploy/index.html",
-          "hash": "xSI2XnMpgU66fUaTb/prdA=="
+          "hash": "o/5kMPlfCF34zbSHXeyqBw=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/hosting-models.html",
-          "hash": "IZJQfixD8h+qc1j/VgbBDA=="
+          "hash": "5+u/I2YK/nSPgd4kstU7vw=="
         }
       },
       "is_incremental": false,
@@ -1627,7 +1627,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/index.html",
-          "hash": "7HqrPzm/uXjxNxdbPpMemw=="
+          "hash": "JUv6ATM5TLcquHvAUqXRGw=="
         }
       },
       "is_incremental": false,
@@ -1639,7 +1639,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/introduction/faq.html",
-          "hash": "BkeUrGa3L9oHcXhAdgLkpw=="
+          "hash": "1BqD5TS+GYuCBghrPImOAA=="
         }
       },
       "is_incremental": false,
@@ -1651,7 +1651,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/introduction/index.html",
-          "hash": "zOkUFhhzrYKVGcB2e3EGqQ=="
+          "hash": "97BI4blOERYXch9S++bJBQ=="
         }
       },
       "is_incremental": false,
@@ -1663,7 +1663,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/javascript-interop.html",
-          "hash": "tRV5NldAClE+tLEkKoqGjg=="
+          "hash": "TcvMhuYk5kQkK7rWJ/N2tQ=="
         }
       },
       "is_incremental": false,
@@ -1675,7 +1675,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/layouts.html",
-          "hash": "Wf9imnAq8wXus1Us9r+14g=="
+          "hash": "9f3xFDUa/etEZmqfjAnFow=="
         }
       },
       "is_incremental": false,
@@ -1687,7 +1687,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/routing.html",
-          "hash": "P1+/PXXfwwrJO/b6TuSBZw=="
+          "hash": "snl5Q3P/ws+Rq6RjWD5NMg=="
         }
       },
       "is_incremental": false,
@@ -1714,7 +1714,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/tutorials/build-your-first-blazor-app.html",
-          "hash": "TX9c0pgxRkZdrbNvT31iag=="
+          "hash": "bkgdG4GfqGEHJMRHBM2/ZQ=="
         }
       },
       "is_incremental": false,
@@ -1770,7 +1770,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "jEWW695GtntD0v7mqgLEnQ=="
+          "hash": "aNT/XOui7hwCXi3xs6XqpQ=="
         }
       },
       "is_incremental": false,
@@ -1797,6 +1797,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
@@ -1808,11 +1813,6 @@
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
